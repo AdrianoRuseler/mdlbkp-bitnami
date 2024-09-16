@@ -176,7 +176,7 @@ moodle_initialize() {
             # Configure no-reply e-mail address for SMTP
 	    echo "INSERT INTO ${mdl_prefix}config (name, value) VALUES ('noreplyaddress', '${MOODLE_EMAIL}')" | "$db_remote_execute" "${db_execute_args[@]}"
             # Additional Bitnami customizations
-            echo "UPDATE ${mdl_prefix}course SET summary='Moodle QA site powered by Bitnami' WHERE id='1'" | "$db_remote_execute" "${db_execute_args[@]}"
+            echo "UPDATE ${mdl_prefix}course SET summary='Moodle Backup site powered by Bitnami' WHERE id='1'" | "$db_remote_execute" "${db_execute_args[@]}"
             # SMTP configuration
             if ! is_empty_value "$MOODLE_SMTP_HOST"; then
                 info "Configuring SMTP credentials"
