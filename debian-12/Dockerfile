@@ -31,13 +31,13 @@ RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
       "render-template-1.0.7-3-linux-${OS_ARCH}-debian-12" \
 #      "php-8.1.29-10-linux-${OS_ARCH}-debian-12" \
-#	  "php-8.2.23-1-linux-${OS_ARCH}-debian-12" \
-	  "php-8.3.11-2-linux-${OS_ARCH}-debian-12" \
+	  "php-8.2.23-1-linux-${OS_ARCH}-debian-12" \
+#	  "php-8.3.11-2-linux-${OS_ARCH}-debian-12" \
       "apache-2.4.62-3-linux-${OS_ARCH}-debian-12" \
       "mysql-client-11.4.3-0-linux-${OS_ARCH}-debian-12" \
 #      "libphp-8.1.29-5-linux-${OS_ARCH}-debian-12" \
-#	  "libphp-8.2.23-0-linux-${OS_ARCH}-debian-12" \
-	  "libphp-8.3.11-0-linux-${OS_ARCH}-debian-12" \
+	  "libphp-8.2.23-0-linux-${OS_ARCH}-debian-12" \
+#	  "libphp-8.3.11-0-linux-${OS_ARCH}-debian-12" \
 #      "moodle-4.4.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
