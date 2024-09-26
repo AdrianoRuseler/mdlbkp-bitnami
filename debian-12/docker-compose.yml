@@ -34,6 +34,21 @@ services:
       - 'moodledata_data:/bitnami/moodledata'
     depends_on:
       - mariadb
+#  jobe:
+#    image: trampgeek/jobeinabox:latest
+#    restart: always
+#    ports:
+#      - '4000:80'
+# https://ngrok.com/docs/using-ngrok-with/docker/
+#  ngrok:
+#    image: ngrok/ngrok:latest
+#    command:
+#      - "http"
+#      - "http://host.docker.internal:80"
+#   environment:
+#      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+#    ports:
+#      - 4040:4040
 volumes:
   mariadb_data:
     driver: local
