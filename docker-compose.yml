@@ -1,0 +1,7 @@
+name: jobeinabox
+services:
+  jobe:
+    image: trampgeek/jobeinabox:latest
+    restart: always
+    ports:
+      - '4000:80'
