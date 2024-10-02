@@ -85,7 +85,7 @@ ENV APACHE_HTTPS_PORT_NUMBER="" \
     LANGUAGE="en_US:en" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/php/bin:/opt/bitnami/php/sbin:/opt/bitnami/apache/bin:/opt/bitnami/postgresql/bin:/opt/bitnami/mysql/bin:$PATH"
 
-EXPOSE 8080 8443
+EXPOSE 8080
 
 ENTRYPOINT [ "/opt/bitnami/scripts/moodle/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/moodle/run.sh" ]
