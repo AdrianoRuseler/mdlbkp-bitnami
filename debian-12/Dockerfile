@@ -55,6 +55,7 @@ RUN git clone --depth=1 --branch="MOODLE_403_STABLE" https://git.in.moodle.com/m
 RUN git clone --depth=1 --recursive --branch="main" https://github.com/AdrianoRuseler/moodle403-plugins.git /tmp/mdlplugins
 RUN rsync -a /tmp/mdlplugins/moodle/* /opt/bitnami/moodle/
 RUN rm -rf /opt/bitnami/moodle/.git
+RUN rm -rf /tmp/mdlplugins
 
 RUN wget https://raw.githubusercontent.com/AdrianoRuseler/mdlbkp-bitnami/main/debian-12/defaults-dist.php -O /opt/bitnami/moodle/local/defaults.php
 
