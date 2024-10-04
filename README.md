@@ -20,13 +20,15 @@ echo "Moving old files ..."
 mv $MDLHOME $MDLHOME.tmpbkp
 mkdir $MDLHOME
 
-echo "moving new files..."
+echo "Moving new files..."
 mv /tmp/$MDLCORE/* $MDLHOME
 
 echo "Copying config file ..."
 cp $MDLHOME.tmpbkp/config.php $MDLHOME
 
+
 echo "Remove tmp files..."
+rm -rf $MDLHOME.tmpbkp
 rm -rf /tmp/$MDLPLGS
 rm -rf /tmp/$MDLCORE
 ```
