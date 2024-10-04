@@ -14,21 +14,21 @@ export MDLHOME="/opt/bitnami/moodle" # TODO!
 cd /tmp
 git clone --depth=1 --branch=$MDLBRANCH $MDLREPO $MDLCORE
 git clone --depth=1 --recursive --branch=$PLGBRANCH $PLGREPO $MDLPLGS
-sudo rsync -a /tmp/$MDLPLGS/moodle/* /tmp/$MDLCORE/
+rsync -a /tmp/$MDLPLGS/moodle/* /tmp/$MDLCORE/
 	
 echo "Moving old files ..."
-sudo mv $MDLHOME $MDLHOME.tmpbkp
+mv $MDLHOME $MDLHOME.tmpbkp
 mkdir $MDLHOME
 
 echo "moving new files..."
-sudo mv /tmp/$MDLCORE/* $MDLHOME
+mv /tmp/$MDLCORE/* $MDLHOME
 
 echo "Copying config file ..."
-sudo cp $MDLHOME.tmpbkp/config.php $MDLHOME
+cp $MDLHOME.tmpbkp/config.php $MDLHOME
 
 echo "Remove tmp files..."
-sudo rm -rf /tmp/$MDLPLGS
-sudo rm -rf /tmp/$MDLCORE
+rm -rf /tmp/$MDLPLGS
+rm -rf /tmp/$MDLCORE
 ```
 
 ## Docker build
