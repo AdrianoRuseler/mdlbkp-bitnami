@@ -30,3 +30,10 @@ echo "Remove tmp files..."
 sudo rm -rf /tmp/$MDLPLGS
 sudo rm -rf /tmp/$MDLCORE
 ```
+
+## Docker build
+```bash
+
+docker compose build --no-cache
+docker compose up -d
+```
