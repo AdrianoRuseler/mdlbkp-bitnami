@@ -4,7 +4,7 @@ $defaults['moodle']['custommenuitems'] = 'Theme
 -Boost | ?theme=boost
 -Classic | ?theme=classic
 ';
-// $defaults['moodle']['allowthemechangeonurl'] = 1; // TODO.
+$defaults['moodle']['allowthemechangeonurl'] = 1; // TODO.
 $defaults['moodle']['timezone'] = 'America/Sao_Paulo';
 $defaults['moodle']['defaultcity'] = 'Curitiba';
 

@@ -51,13 +51,14 @@ RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     done
 
 RUN apt-get update -y
-RUN git clone --depth=1 --branch="MOODLE_403_STABLE" https://git.in.moodle.com/moodle/integration.git /opt/bitnami/moodle
-RUN git clone --depth=1 --recursive --branch="main" https://github.com/AdrianoRuseler/moodle403-plugins.git /tmp/mdlplugins
+RUN git clone --depth=1 --branch="MOODLE_405_STABLE" https://github.com/moodle/moodle.git /opt/bitnami/moodle
+RUN git clone --depth=1 --recursive --branch="main" https://github.com/AdrianoRuseler/moodle405-plugins.git /tmp/mdlplugins
 RUN rsync -a /tmp/mdlplugins/moodle/* /opt/bitnami/moodle/
 RUN rm -rf /opt/bitnami/moodle/.git
 RUN rm -rf /tmp/mdlplugins
 
-RUN wget https://raw.githubusercontent.com/AdrianoRuseler/mdlbkp-bitnami/main/debian-12/defaults-dist.php -O /opt/bitnami/moodle/local/defaults.php
+#RUN wget https://raw.githubusercontent.com/AdrianoRuseler/mdlbkp-bitnami/main/debian-12/defaults-dist.php -O #/opt/bitnami/moodle/local/defaults.php
+COPY defaults-dist.php /opt/bitnami/moodle/local/defaults.php
 
 RUN apt-get autoremove --purge -y wget curl && \
     apt-get update && apt-get upgrade -y && \
