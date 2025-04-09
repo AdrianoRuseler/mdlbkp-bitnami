@@ -59,7 +59,8 @@ RUN rm -rf /tmp/mdlplugins
 #RUN wget https://raw.githubusercontent.com/AdrianoRuseler/mdlbkp-bitnami/main/debian-12/defaults-dist.php -O #/opt/bitnami/moodle/local/defaults.php
 COPY defaults-dist.php /opt/bitnami/moodle/local/defaults.php
 
-RUN apt-get autoremove --purge -y wget curl && \
+
+RUN apt-get autoremove --purge -y wget && \
     apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN localedef -c -f UTF-8 -i en_US en_US.UTF-8
@@ -85,6 +86,14 @@ ENV APACHE_HTTPS_PORT_NUMBER="" \
     LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/php/bin:/opt/bitnami/php/sbin:/opt/bitnami/apache/bin:/opt/bitnami/postgresql/bin:/opt/bitnami/mysql/bin:$PATH"
+
+# Install Composer (if not already present in the image)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN git clone --depth=1 --branch="master" https://github.com/tmuras/moosh.git /opt/bitnami/moosh
+RUN cd /opt/bitnami/moosh && composer install
+RUN ln -s /opt/bitnami/moosh/moosh.php /usr/local/bin/moosh
+# Ensure Moosh is executable and test it
+RUN cd /opt/bitnami/moodle && moosh --list-commands || echo "Moosh installation failed"
 
 EXPOSE 8080
 
