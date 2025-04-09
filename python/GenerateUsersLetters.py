@@ -17,7 +17,7 @@ fields = ['username', 'firstname', 'lastname', 'email','password','cohort1','idn
 filename = "tsamg_letters_import.csv"
 # groups = ["Student", "Teacher", "Admin"]
 gcohort = ["Estudantes", "Professores", "Administradores", "Gerentes"]
-groups = ["E","P","A","G"] 
+groups = ["e","p","a","g"] 
 nusersgroup= [10,5,1,1] # number os users per group
 Faker.seed(0)
 gpass = [fake.password(),fake.password(),fake.password(),fake.password()] # Same password per group

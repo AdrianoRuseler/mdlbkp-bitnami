@@ -1,7 +1,7 @@
 # Faker is a Python package that generates fake data for you.
 from faker import Faker
-fake = Faker()
-# fake = Faker('pt_BR')
+#fake = Faker()
+fake = Faker('pt_BR')
 
 import csv
 import random
@@ -16,8 +16,8 @@ fields = ['username', 'firstname', 'lastname', 'email','password','cohort1','idn
 # name of csv file 
 filename = "tsamg_numbers_import.csv"
 gcohort = ["Estudantes", "Professores", "Administradores", "Gerentes"]
-groups = ["E","P","A","G"] 
-nusersgroup= [10,5,1,1] # number os users per group
+groups = ["e","p","a","g"] 
+nusersgroup= [15,2,1,1] # number os users per group
 gpass = [fake.password(),fake.password(),fake.password(),fake.password()] # Same password per group
 gmail = ["estudante.local", "professor.local", "admin.local", "gerente.local"]
 
@@ -35,8 +35,8 @@ with open(filename, 'w',newline='\n') as csvfile:
         gname=groups[n] # Group name
         for u in range(nusers):
             sname=gname+str(u+1).zfill(2) # User short name
-            fname=sname+'fn'
-            lname=sname+'ln'
+            fname=fake.first_name()
+            lname=fake.last_name()
             nome=fname+" "+lname
             username=sname
             email=username+"@"+gmail[n]
