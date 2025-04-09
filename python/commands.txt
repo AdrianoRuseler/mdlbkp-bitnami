@@ -1,0 +1,4 @@
+ls -la
+whoami
+pwd
+echo "Hello from Moodle directory"
