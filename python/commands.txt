@@ -1,2 +1,6 @@
 moosh -n language-install pt_br
 moosh -n language-install pt_br_uni
+moosh -n languages-update
+moosh -n course-create --category 1 --fullname "QUIZ TEST"  TESTQUIZ
+moosh -n cache-clear
+moosh -n questioncategory-create 

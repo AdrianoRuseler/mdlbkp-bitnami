@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<categories>
+  <category name=".">
+    <category name="playwright"/>
+    <category name="test_folders">
+      <category name="Folder01"/>
+      <category name="Folder02">
+        <category name="SubFolder01"/>
+      </category>
+    </category>
+  </category>
+</categories>
