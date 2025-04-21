@@ -1,7 +1,7 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-name: mdlbkp-deb12
+name: mdlbkp-450
 services:
   mariadb:
     image: docker.io/bitnami/mariadb:latest
@@ -21,7 +21,7 @@ services:
         dockerfile: Dockerfile
     ports:
       - '80:8080'
-      - '443:8443'
+    #  - '443:8443'
     environment:
       - MOODLE_DATABASE_HOST=mariadb
       - MOODLE_DATABASE_PORT_NUMBER=3306
