@@ -15,13 +15,13 @@ services:
     volumes:
       - 'mariadb_data:/bitnami/mariadb'
   moodle:
-    #image: docker.io/bitnami/moodle:4.4
+    #image: docker.io/bitnami/moodle:latest
     build:
         context: .
         dockerfile: Dockerfile
     ports:
       - '80:8080'
-    #  - '443:8443'
+      - '443:8443'
     environment:
       - MOODLE_DATABASE_HOST=mariadb
       - MOODLE_DATABASE_PORT_NUMBER=3306
