@@ -20,3 +20,9 @@ $defaults['moodle']['pathtopython'] = '/usr/bin/python3';
 $defaults['moodle']['forcelogin'] = 1;
 $defaults['moodle']['enablewebservices'] = 1;
 $defaults['moodle']['enablewsdocumentation'] = 1;
+$defaults['moodle']['webserviceprotocols'] = 'rest';
+
+$defaults['qtype_stack']['platform'] = 'Server';
+$defaults['qtype_stack']['maximaversion'] = '5.44.0';
+$defaults['qtype_stack']['maximacommandserver'] = 'http://host.docker.internal:8081/goemaxima';
+
