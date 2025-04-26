@@ -105,6 +105,11 @@ services:
     volumes:
       - vpl_data:/var/vpl_jail
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
 
   # Uncomment the following lines to use ngrok for tunneling
 # https://ngrok.com/docs/using-ngrok-with/docker/
