@@ -128,6 +128,8 @@ volumes:
     driver: local
   mailpit_data:
     driver: local
+  vpl_data:
+    driver: local
 networks:
   mdl_mariadb_net:
     driver: bridge
