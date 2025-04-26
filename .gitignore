@@ -1,1 +1,6 @@
 *.csv
+
+/docker/4.5/defaults-dist.php
+/docker/5.0/defaults-dist.php
+*.env
+
