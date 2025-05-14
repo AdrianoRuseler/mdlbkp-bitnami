@@ -66,9 +66,9 @@ services:
     networks:
       - mdl_mariadb_net
   phpmyadmin:
-    image: docker.io/bitnami/phpmyadmin:5
+    image: phpmyadmin:latest
     ports:
-      - '8080:8080'
+      - '8080:80'
     environment:
       - PMA_HOST=mariadb
       - PMA_PORT=3306
