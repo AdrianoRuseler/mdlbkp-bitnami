@@ -1,0 +1,22 @@
+services:
+  openldap:
+    image: openldap-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openldap
+    ports:
+      - "389:389"  # LDAP
+      - "636:636"  # LDAPS
+    volumes:
+      - openldap-data:/var/lib/openldap
+      - ./slapd.conf:/etc/openldap/slapd.conf
+      - ./DB_CONFIG:/var/lib/openldap/DB_CONFIG
+    environment:
+      - SLAPD_LOGLEVEL=256
+    restart: unless-stopped
+    user: "ldap:ldap"
+
+volumes:
+  openldap-data:
+    name: openldap-data
