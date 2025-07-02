@@ -20,7 +20,9 @@ $defaults['moodle']['pathtopython'] = '/usr/bin/python3';
 $defaults['moodle']['forcelogin'] = 1;
 $defaults['moodle']['enablewebservices'] = 1;
 $defaults['moodle']['enablewsdocumentation'] = 1;
-$defaults['moodle']['webserviceprotocols'] = 'rest';
+$defaults['moodle']['webserviceprotocols'] = 'rest'; 
+
+$defaults['moodle']['doclang'] = 'en'; // https://docs.moodle.org/dev/Internationalization#Language_pack_settings
 
 # https://docs.stack-assessment.org/en/Installation/
 $defaults['qtype_stack']['platform'] = 'Server';
