@@ -1,26 +1,37 @@
 import requests
 import os
 
-from faker import Faker
+import random
+import string
+import secrets
+
+def custom_password(length=8):
+    #allowed_chars = string.ascii_letters + string.digits + "!@#%^&*()-_=+[]{}<>?"
+    allowed_chars = string.ascii_letters + string.digits + "@#%&?"
+    return ''.join(random.choices(allowed_chars, k=length))
 
 def generate_env_file(filename='.env'):
-    """Generate a .env file with random credentials using Faker."""
-    fake = Faker()
+    """Generate a .env file with random credentials using custom_password()."""
 
     # Generate random values
-    mariadb_password = fake.password()
-    mariadb_root_password = fake.password()
-    moodle_admin_password = fake.password()
+    mariadb_password = custom_password()  # Custom password function
+    mariadb_root_password = custom_password() 
+    moodle_admin_password = custom_password() 
+    lldap_admin_password = custom_password() 
+    # Generate a random string that mimics a JWT secret
+    jwt_secret = secrets.token_urlsafe(64)  # Generates a secure 64-character secret
 
     # Content for .env file
     env_content = f"""MARIADB_PASSWORD={mariadb_password}
 MARIADB_ROOT_PASSWORD={mariadb_root_password}
 MOODLE_PASSWORD={moodle_admin_password}
+LLDAP_JWT={jwt_secret}
+LLDAP_PASSWORD={lldap_admin_password}
 """
 
     # Write to .env file
     try:
-        with open(filename, 'w') as f:
+        with open(filename, 'w', newline='\n') as f:
             f.write(env_content)
         print(f"Successfully created {filename} with random credentials:")
         print("-" * 50)
@@ -74,7 +85,7 @@ def download_and_append_github_file(output_filename, github_url=None, content=No
         full_content = content + "\n"  # Ensure final newline
         
         # Append the content at the end of the local file
-        with open(output_filename, 'a', encoding='utf-8') as file:
+        with open(output_filename, 'a', encoding='utf-8', newline='\n') as file:
             # If file is not empty, ensure we're starting on a new line
             if os.path.exists(output_filename) and os.path.getsize(output_filename) > 0:
                 file.write("\n")  # Add extra newline before new content
