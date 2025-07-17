@@ -11,11 +11,13 @@ def generate_env_file(filename='.env'):
     mariadb_password = fake.password()
     mariadb_root_password = fake.password()
     moodle_admin_password = fake.password()
+    lldap_admin_password = fake.password()
 
     # Content for .env file
     env_content = f"""MARIADB_PASSWORD={mariadb_password}
 MARIADB_ROOT_PASSWORD={mariadb_root_password}
 MOODLE_PASSWORD={moodle_admin_password}
+LLDAP_PASSWORD={lldap_admin_password}
 """
 
     # Write to .env file
