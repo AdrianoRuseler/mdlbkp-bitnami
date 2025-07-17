@@ -28,11 +28,12 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN install_packages nano wget graphviz ghostscript python3 poppler-utils aspell dictionaries-common libaspell15 aspell-en aspell-pt-br aspell-doc spellutils rsync acl git ca-certificates cron curl libaudit1 libbrotli1 libbsd0 libbz2-1.0 libcap-ng0 libcom-err2 libcrypt1 libcurl4 libedit2 libexpat1 libffi8 libfftw3-double3 libfontconfig1 libfreetype6 libgcc-s1 libgcrypt20 libglib2.0-0 libgmp10 libgnutls30 libgomp1 libgpg-error0 libgssapi-krb5-2 libhashkit2 libhogweed6 libicu72 libidn2-0 libjpeg62-turbo libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblcms2-2 libldap-2.5-0 liblqr-1-0 libltdl7 liblzma5 libmagickcore-6.q16-6 libmagickwand-6.q16-6 libmd0 libmemcached11 libncurses6 libnettle8 libnghttp2-14 libonig5 libp11-kit0 libpam0g libpcre2-8-0 libpcre3 libpng16-16 libpq5 libpsl5 libreadline8 librtmp1 libsasl2-2 libsodium23 libsqlite3-0 libssh2-1 libssl3 libstdc++6 libsybdb5 libtasn1-6 libtidy5deb1 libtinfo6 libunistring2 libuuid1 libwebp7 libx11-6 libxau6 libxcb1 libxdmcp6 libxext6 libxml2 libxslt1.1 libzip4 libzstd1 locales openssl procps zlib1g
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "render-template-1.0.7-17-linux-${OS_ARCH}-debian-12" \
-	  "php-8.3.22-0-linux-${OS_ARCH}-debian-12" \
-      "apache-2.4.63-5-linux-${OS_ARCH}-debian-12" \
-      "mysql-client-11.4.7-0-linux-${OS_ARCH}-debian-12" \
-	  "libphp-8.3.22-0-linux-${OS_ARCH}-debian-12" \
+      "render-template-1.0.8-1-linux-${OS_ARCH}-debian-12" \
+	  "php-8.3.23-4-linux-${OS_ARCH}-debian-12" \
+ #      "php-8.4.10-2-linux-${OS_ARCH}-debian-12" \
+      "apache-2.4.64-0-linux-${OS_ARCH}-debian-12" \
+      "mysql-client-11.8.2-0-linux-${OS_ARCH}-debian-12" \
+	  "libphp-8.3.23-2-linux-${OS_ARCH}-debian-12" \
 #     "moodle-4.5.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
