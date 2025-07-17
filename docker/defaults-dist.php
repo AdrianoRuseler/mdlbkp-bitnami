@@ -1,8 +1,10 @@
 <?php
 $defaults['moodle']['summary'] = 'Moodle Backup Site! '; // for core settings
 $defaults['moodle']['custommenuitems'] = 'Theme
+-Adaptable | ?theme=adaptable
 -Boost | ?theme=boost
 -Classic | ?theme=classic
+-Union | ?theme=boost_union
 ';
 $defaults['moodle']['allowthemechangeonurl'] = 1; 
 $defaults['moodle']['timezone'] = 'America/Sao_Paulo';
