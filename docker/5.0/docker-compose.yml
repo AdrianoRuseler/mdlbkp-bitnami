@@ -129,8 +129,9 @@ services:
       # Alternatively, for local folder:
       # - ./lldap_data:/data
     environment:
-      # --- Essential Configuration ---
-      - LLDAP_JWT_SECRET=YOUR_SUPER_SECRET_JWT_KEY # Change this! Generate a strong random string.
+      # --- Essential Configuration --
+      - LLDAP_LDAP_HOST=0.0.0.0 # Or :: for IPv6-
+      - LLDAP_JWT_SECRET=${LLDAP_JWT} # Change this! Generate a strong random string. 
       - LLDAP_LDAP_USER_PASS=${LLDAP_PASSWORD} # admin password for LDAP users
       - LLDAP_LDAP_BASE_DN=dc=mdlbkp,dc=local # Your base DN (e.g., dc=yourdomain,dc=com) cn=admin,dc=mdlbkp,dc=local
 
