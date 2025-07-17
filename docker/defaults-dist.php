@@ -7,7 +7,7 @@ $defaults['moodle']['custommenuitems'] = 'Theme
 $defaults['moodle']['allowthemechangeonurl'] = 1; 
 $defaults['moodle']['timezone'] = 'America/Sao_Paulo';
 $defaults['moodle']['defaultcity'] = 'Curitiba';
-$defaults['moodle']['country'] = 'Brazil';
+$defaults['moodle']['country'] = 'Brazil'; // TODO
 
 $defaults['moodle']['pathtophp'] = '/opt/bitnami/php/bin/php';
 $defaults['moodle']['pathtodu'] = '/usr/bin/du';
@@ -25,7 +25,7 @@ $defaults['moodle']['webserviceprotocols'] = 'rest';
 $defaults['moodle']['doclang'] = 'en'; // https://docs.moodle.org/dev/Internationalization#Language_pack_settings
 
 # https://docs.stack-assessment.org/en/Installation/
-$defaults['qtype_stack']['platform'] = 'Server';
+$defaults['qtype_stack']['platform'] = 'Server'; // TODO
 $defaults['qtype_stack']['maximaversion'] = '5.44.0';
 $defaults['qtype_stack']['maximacommandserver'] = 'http://host.docker.internal:8081/goemaxima';
 
