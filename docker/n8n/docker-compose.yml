@@ -1,0 +1,42 @@
+#version: '3.8'
+
+services:
+  # n8n service
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      # Set to localhost for local development
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http # Use http for localhost
+      - WEBHOOK_URL=http://localhost/n8n/ # Updated for subfolder
+      - VUE_APP_URL_BASE_API=http://localhost/n8n/ # Updated for subfolder
+      - N8N_PATH=/n8n/ # New: Specify the subpath for n8n
+      - GENERIC_TIMEZONE=America/Sao_Paulo # Example: Set your timezone
+      # - N8N_BASIC_AUTH_ACTIVE=true # Uncomment and set below for basic auth
+      # - N8N_BASIC_AUTH_USER=your_username
+      # - N8N_BASIC_AUTH_PASSWORD=your_password
+      # - DB_TYPE=postgresdb # Uncomment and configure for PostgreSQL
+      # - DB_POSTGRESDB_HOST=postgres
+      # - DB_POSTGRESDB_PORT=5432
+      # - DB_POSTGRESDB_DATABASE=n8n
+      # - DB_POSTGRESDB_USER=n8n
+      # - DB_POSTGRESDB_PASSWORD=n8n_password
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    # Expose port 5678 for Nginx to connect to. Do not expose directly to host.
+    expose:
+      - "5678"
+
+  # Nginx reverse proxy service
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80" # Expose port 80 for HTTP access
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - n8n
