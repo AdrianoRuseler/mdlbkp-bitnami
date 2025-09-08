@@ -1,0 +1,33 @@
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_PATH=/
+      - WEBHOOK_TUNNEL_URL=http://localhost/
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - n8nnet
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - n8nnet
+
+volumes:
+  n8n_data:
+
+networks:
+  n8nnet:
+    driver: bridge
