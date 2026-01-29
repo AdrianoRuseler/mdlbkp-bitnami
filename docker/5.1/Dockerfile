@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
       org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/moodle" \
       org.opencontainers.image.title="moodle" \
       org.opencontainers.image.vendor="Broadcom, Inc." \
-      org.opencontainers.image.version="5.1.1"
+      org.opencontainers.image.version="5.1+"
 
 ENV OS_ARCH="${TARGETARCH:-amd64}" \
     OS_FLAVOUR="debian-12" \
@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
       "postgresql-client-14.20.0-0-linux-${OS_ARCH}-debian-12" \
       "mysql-client-12.1.2-0-linux-${OS_ARCH}-debian-12" \
       "libphp-8.4.17-0-linux-${OS_ARCH}-debian-12" \
-      "moodle-5.1.1-0-linux-${OS_ARCH}-debian-12" \
+    #  "moodle-5.1.1-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -47,6 +47,18 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
       tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
+
+
+RUN apt-get update -y
+RUN git clone --depth=1 --branch="MOODLE_501_STABLE" https://github.com/moodle/moodle.git /opt/bitnami/moodle
+RUN git clone --depth=1 --recursive --branch="main" https://github.com/AdrianoRuseler/moodle501-plugins.git /tmp/mdlplugins
+RUN rsync -a /tmp/mdlplugins/moodle/* /opt/bitnami/moodle/
+RUN rm -rf /opt/bitnami/moodle/.git
+RUN rm -rf /tmp/mdlplugins
+
+#RUN wget https://raw.githubusercontent.com/AdrianoRuseler/mdlbkp-bitnami/main/debian-12/defaults-dist.php -O #/opt/bitnami/moodle/local/defaults.php
+COPY defaults-dist.php /opt/bitnami/moodle/public/local/defaults.php
+
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
@@ -67,7 +79,7 @@ RUN /opt/bitnami/scripts/moodle/postunpack.sh
 RUN /opt/bitnami/scripts/mysql-client/postunpack.sh
 ENV APACHE_HTTPS_PORT_NUMBER="" \
     APACHE_HTTP_PORT_NUMBER="" \
-    APP_VERSION="5.1.1" \
+    APP_VERSION="5.1+" \
     BITNAMI_APP_NAME="moodle" \
     IMAGE_REVISION="4" \
     LANG="en_US.UTF-8" \
