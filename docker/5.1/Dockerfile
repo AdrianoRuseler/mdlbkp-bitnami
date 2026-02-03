@@ -48,6 +48,26 @@ RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
       rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
     done
 
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y autoconf build-essential libz-dev
+
+# Use the SPECIFIC Bitnami pecl and php-config to ensure API matching
+RUN /opt/bitnami/php/bin/pecl bundle redis && \
+    cd redis && \
+    /opt/bitnami/php/bin/phpize && \
+    ./configure --with-php-config=/opt/bitnami/php/bin/php-config && \
+    make && \
+    make install
+
+# Enable the extension in the correct config file
+RUN echo "extension=redis.so" >> /opt/bitnami/php/etc/php.ini
+
+# Cleanup
+RUN apt-get purge -y autoconf build-essential && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf redis
 
 RUN apt-get update -y
 RUN git clone --depth=1 --branch="MOODLE_501_STABLE" https://github.com/moodle/moodle.git /opt/bitnami/moodle

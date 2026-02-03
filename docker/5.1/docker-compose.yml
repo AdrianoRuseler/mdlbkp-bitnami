@@ -108,6 +108,8 @@ services:
           memory: 2G
   redis:
     image: redis:alpine
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
     networks:
       - mdl_mariadb_net
     ports:
