@@ -17,19 +17,10 @@ services:
   moodle-init:
     image: alpine/git
     container_name: moodle-init
-    # We must explicitly set the entrypoint to /bin/sh
-    entrypoint: [ "/bin/sh", "-c" ]
-    command:
-      - |
-        if [ ! -d /target/.git ]; then
-          echo "Cloning Moodle..."
-          git clone --depth 1 --branch MOODLE_500_STABLE https://github.com/moodle/moodle.git /target
-          chown -R 33:33 /target
-        else
-          echo "Moodle code already exists, skipping clone."
-        fi
     volumes:
       - moodle_data:/target
+      - ./init-moodle.sh:/init-moodle.sh:ro
+    entrypoint: [ "/bin/sh", "/init-moodle.sh" ]
   moodle:
     image: moodlehq/moodle-php-apache:8.2
     container_name: moodle-app
